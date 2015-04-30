@@ -41,7 +41,8 @@
       autoOpen: false,
       multiple: true,
       position: {},
-      appendTo: "body"
+      appendTo: "body",
+      unescapeHtml: true
     },
 
     _create: function() {
@@ -186,6 +187,7 @@
         }
 
         // add the title and close everything off
+        if (o.unescapeHtml) { description=htmlUnescape(description); }
         html += ' /><span>' + description + '</span></label></li>';
       });
 
@@ -234,10 +236,10 @@
       return value;
     },
 
-    // this exists as a separate method so that the developer 
+    // this exists as a separate method so that the developer
     // can easily override it.
     _setButtonValue: function(value) {
-      this.buttonlabel.text(value);
+      this.buttonlabel.html(value);
     },
 
     // binds events
